@@ -4,4 +4,6 @@
     <string name="error_dialog_title">Pobieranie danych</string>
     <string name="error_dialog_try_again_button">SPRÓBUJ PONOWNIE</string>
     <string name="error_dialog_cancel_button">ANULUJ</string>
+    <string name="offer_prize_text">cena:</string>
+    <string name="offer_image_text_desc">Offer image</string>
 </resources>

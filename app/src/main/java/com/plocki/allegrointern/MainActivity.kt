@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun showError(errorMessage: String?) {
         AlertDialog.Builder(this)
             .setTitle(R.string.error_dialog_title)
@@ -36,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             .apply { setCanceledOnTouchOutside(false) }
             .show()
     }
-
 
     private fun downloadOffers(){
         val retrofit = Retrofit.Builder()
@@ -54,9 +55,12 @@ class MainActivity : AppCompatActivity() {
                     progressView.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
                 }
+                else{
+                    showError("Błąd ${response.code()}")
+                }
             }
             override fun onFailure(call: Call<Offers>, t: Throwable) {
-                showError(t.message)
+                showError(t.localizedMessage)
             }
         })
     }

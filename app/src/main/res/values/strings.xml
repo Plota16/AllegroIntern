@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AllegroIntern</string>
+    <string name="app_name">Sklep Allegro</string>
     <string name="data_download_text">Pobieranie danych</string>
     <string name="error_dialog_title">Pobieranie danych</string>
     <string name="error_dialog_try_again_button">SPRÓBUJ PONOWNIE</string>

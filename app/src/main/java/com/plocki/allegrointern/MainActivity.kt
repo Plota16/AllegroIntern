@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.plocki.allegrointern.model.ApiResponse
+import com.plocki.allegrointern.model.Offer
 import com.plocki.allegrointern.recycler.ListAdapter
 import com.plocki.allegrointern.services.OfferService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    var offerList = ApiResponse()
+
     private var context : Context?  = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,29 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    private fun loadRecycler(offerList : ApiResponse){
+        progressView.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-    private fun showError(errorMessage: String?) {
+        val restrictedData = restrictData(offerList)
+        recyclerView.adapter = ListAdapter(restrictedData,context!!)
+    }
+
+    private fun restrictData(offerList : ApiResponse) : ArrayList<Offer>{
+        val oldData = offerList.offers
+        val sortedData = oldData.sortedBy { it.price!!.amount }
+        val newData = ArrayList<Offer>()
+        for(offer: Offer in sortedData){
+            if(offer.price!!.amount!!.toDouble() in 50.0..1000.0){
+                newData.add(offer)
+            }
+        }
+        return newData
+    }
+
+
+    private fun showErrorDialog(errorMessage: String?) {
         AlertDialog.Builder(this)
             .setTitle(R.string.error_dialog_title)
             .setMessage(errorMessage)
@@ -56,18 +78,15 @@ class MainActivity : AppCompatActivity() {
         call.enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.code() == 200) {
-                    offerList = response.body()!!
-                    progressView.visibility = View.GONE
-                    recyclerView.visibility = View.VISIBLE
-                    recyclerView.layoutManager = LinearLayoutManager(context)
-                    recyclerView.adapter = ListAdapter(offerList,context!!)
+                    val offerList = response.body()!!
+                    loadRecycler(offerList)
                 }
                 else{
-                    showError("Błąd ${response.code()}")
+                    showErrorDialog("Błąd ${response.code()}")
                 }
             }
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                showError(t.localizedMessage)
+                showErrorDialog(t.localizedMessage)
             }
         })
     }

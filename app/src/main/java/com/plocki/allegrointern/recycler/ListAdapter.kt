@@ -23,6 +23,11 @@ class ListAdapter(private val offerList: ArrayList<Offer>, private val context: 
         val offer: Offer = offerList[position]
         holder.itemView.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("url",offerList[position].thumbnailUrl)
+            intent.putExtra("name",offerList[position].name)
+            intent.putExtra("description",offerList[position].description)
+            intent.putExtra("amount",offerList[position].price!!.amount.toString())
+            intent.putExtra("currency",offerList[position].price!!.currency)
             context.startActivity(intent)
         }
         holder.bind(offer)

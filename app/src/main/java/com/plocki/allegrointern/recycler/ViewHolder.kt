@@ -1,17 +1,18 @@
 package com.plocki.allegrointern.recycler
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.plocki.allegrointern.DetailActivity
+import com.bumptech.glide.request.RequestOptions
 import com.plocki.allegrointern.R
 import com.plocki.allegrointern.model.Offer
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+
 
 class ViewHolder(inflater: LayoutInflater, parent: ViewGroup, private val context: Context) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.offer, parent, false)){
@@ -23,14 +24,24 @@ class ViewHolder(inflater: LayoutInflater, parent: ViewGroup, private val contex
 
 
     fun bind(offer: Offer){
-        val priceString = "${offer.price!!.amount} ${offer.price!!.currency}"
+        val priceString = "${toPolishFormat(offer.price!!.amount!!)} ${offer.price!!.currency}"
         offerName.text = offer.name
         offerPrice.text = priceString
 
+        val options = RequestOptions()
+            .fitCenter()
+
         Glide.with(context)
             .load(offer.thumbnailUrl)
+            .apply(options)
             .into(offerImage)
 
     }
 
+    private fun toPolishFormat(price : Double): String {
+        val symbols = DecimalFormatSymbols()
+        symbols.decimalSeparator = ','
+        val decimalFormat = DecimalFormat("0.00", symbols)
+        return decimalFormat.format(price)
+    }
 }

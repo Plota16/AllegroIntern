@@ -5,7 +5,12 @@
     android:id="@+id/recyclerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/colorAccent"
+    android:paddingTop="@dimen/inner_border_size"
+    android:paddingRight="@dimen/outer_border_size"
+    android:paddingBottom="@dimen/outer_border_size"
+    android:paddingLeft="@dimen/outer_border_size">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/progressView"
@@ -43,8 +48,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"

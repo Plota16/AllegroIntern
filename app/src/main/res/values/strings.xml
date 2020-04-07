@@ -6,4 +6,5 @@
     <string name="error_dialog_cancel_button">ANULUJ</string>
     <string name="offer_prize_text">cena:</string>
     <string name="offer_image_text_desc">Offer image</string>
+    <string name="back_desc">Back Image</string>
 </resources>

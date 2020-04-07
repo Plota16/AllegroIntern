@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    app:contentInsetStart="0dp"
+    app:contentInsetEnd="0dp"
+
+    android:paddingLeft="@dimen/outer_border_size"
+    android:paddingRight="@dimen/outer_border_size"
+    android:paddingTop="@dimen/outer_border_size"
+
+    android:minHeight="?attr/actionBarSize"
+    >
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/toolbar_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="#00000000"
+            android:tint="#00000000"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_arrow_back_24px"
+            android:contentDescription="@string/back_desc"
+            android:layout_marginStart="12dp" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.Toolbar>

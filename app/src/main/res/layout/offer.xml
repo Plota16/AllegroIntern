@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/offerImage"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
             android:contentDescription="@string/offer_image_text_desc"
             android:scaleType="centerCrop" />
 
@@ -67,7 +67,7 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:layout_height="@dimen/divider_size"
+        android:background="#000000" />
 
 </LinearLayout>

@@ -42,8 +42,8 @@ class RestrictDataTest {
     fun restrictDataAllGood(){
         val mainActivity = intentsRule.activity
 
-        val originalArray =  arrayListOf<Offer>(offerGoodPrice1,offerGoodPrice2,offerGoodPrice3)
-        val restrictedArray = arrayListOf<Offer>(offerGoodPrice1,offerGoodPrice2,offerGoodPrice3)
+        val originalArray =  arrayListOf(offerGoodPrice1,offerGoodPrice2,offerGoodPrice3)
+        val restrictedArray = arrayListOf(offerGoodPrice1,offerGoodPrice2,offerGoodPrice3)
 
         assertTrue(restrictedArray == mainActivity.restrictData(originalArray))
     }
@@ -52,8 +52,8 @@ class RestrictDataTest {
     fun restrictDataWithToLow(){
         val mainActivity = intentsRule.activity
 
-        val originalArray =  arrayListOf<Offer>(offerToLowPrice,offerGoodPrice1,offerGoodPrice3)
-        val restrictedArray = arrayListOf<Offer>(offerGoodPrice1,offerGoodPrice3)
+        val originalArray =  arrayListOf(offerToLowPrice,offerGoodPrice1,offerGoodPrice3)
+        val restrictedArray = arrayListOf(offerGoodPrice1,offerGoodPrice3)
 
         assertTrue(restrictedArray == mainActivity.restrictData(originalArray))
     }
@@ -62,8 +62,8 @@ class RestrictDataTest {
     fun restrictDataWithToHigh(){
         val mainActivity = intentsRule.activity
 
-        val originalArray =  arrayListOf<Offer>(offerGoodPrice2,offerGoodPrice3,offerToHighPrice)
-        val restrictedArray = arrayListOf<Offer>(offerGoodPrice2,offerGoodPrice3)
+        val originalArray =  arrayListOf(offerGoodPrice2,offerGoodPrice3,offerToHighPrice)
+        val restrictedArray = arrayListOf(offerGoodPrice2,offerGoodPrice3)
 
         assertTrue(restrictedArray == mainActivity.restrictData(originalArray))
     }
@@ -72,8 +72,8 @@ class RestrictDataTest {
     fun restrictDataWithBoth(){
         val mainActivity = intentsRule.activity
 
-        val originalArray =  arrayListOf<Offer>(offerToHighPrice, offerGoodPrice3,offerToLowPrice,offerGoodPrice1,offerGoodPrice2)
-        val restrictedArray = arrayListOf<Offer>(offerGoodPrice3,offerGoodPrice1,offerGoodPrice2)
+        val originalArray =  arrayListOf(offerToHighPrice, offerGoodPrice3,offerToLowPrice,offerGoodPrice1,offerGoodPrice2)
+        val restrictedArray = arrayListOf(offerGoodPrice3,offerGoodPrice1,offerGoodPrice2)
 
         assertTrue(restrictedArray == mainActivity.restrictData(originalArray))
     }

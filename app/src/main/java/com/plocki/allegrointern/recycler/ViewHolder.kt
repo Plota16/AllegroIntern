@@ -11,14 +11,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.plocki.allegrointern.DetailActivity
 import com.plocki.allegrointern.R
 import com.plocki.allegrointern.model.Offer
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 
 
 class ViewHolder(inflater: LayoutInflater, parent: ViewGroup, private val context: Context) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.offer, parent, false)){
 
-    val offerImage : ImageView = itemView.findViewById(R.id.offerImage)
+    private val offerImage : ImageView = itemView.findViewById(R.id.offerImage)
     val offerName : TextView = itemView.findViewById(R.id.offerName)
     val offerPrice : TextView = itemView.findViewById(R.id.offerPrize)
 

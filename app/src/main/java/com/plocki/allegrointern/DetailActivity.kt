@@ -44,11 +44,14 @@ class DetailActivity : AppCompatActivity() {
         detail_price.text = price
 
         //Set description from html code
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             detail_desc.text = Html.fromHtml(offerDescription, Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            detail_desc.text = Html.fromHtml(offerDescription)
         }
+        else{
+            detail_desc.text = offerDescription
+        }
+
 
         //Load image from Url
         Glide.with(this)
@@ -58,7 +61,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupActionBar(){
         val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = inflater.inflate(R.layout.toolbar, null)
+        val nullParent: ViewGroup? = null
+        val view: View = inflater.inflate(R.layout.toolbar, nullParent)
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setCustomView(view,

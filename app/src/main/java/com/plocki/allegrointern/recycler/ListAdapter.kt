@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.plocki.allegrointern.DetailActivity
 import com.plocki.allegrointern.model.Offer
-import com.plocki.allegrointern.model.ApiResponse
 
 class ListAdapter(private val offerList: ArrayList<Offer>, private val context: Context)
     : RecyclerView.Adapter<ViewHolder>() {

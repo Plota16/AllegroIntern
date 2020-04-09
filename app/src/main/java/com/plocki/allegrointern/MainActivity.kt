@@ -1,6 +1,5 @@
 package com.plocki.allegrointern
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.plocki.allegrointern.model.ApiResponse
 import com.plocki.allegrointern.model.Offer
 import com.plocki.allegrointern.recycler.ListAdapter
@@ -36,19 +34,19 @@ class MainActivity : AppCompatActivity() {
 
         //Download offers From API
         downloadOffers()
-
     }
 
     private fun setupActionBar(){
         val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = inflater.inflate(R.layout.toolbar, null)
-        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
-        supportActionBar!!.setDisplayShowCustomEnabled(true);
+        val nullParent: ViewGroup? = null
+        val view: View = inflater.inflate(R.layout.toolbar, nullParent)
+        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setCustomView(view,
             ActionBar.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
-            ));
+            ))
         context = this
     }
 
@@ -77,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                     showErrorDialog("Błąd ${response.code()}")
                 }
             }
+
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 //Show Error Dialog with failure message
                 showErrorDialog(t.localizedMessage)

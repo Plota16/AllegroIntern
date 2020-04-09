@@ -29,7 +29,7 @@ class DetailActivity : AppCompatActivity() {
 
         //Get Offer details
         val offerName = this.intent.getStringExtra("name")
-        val offerAmount = this.intent.getStringExtra("amount")
+        val offerAmount = this.intent.getDoubleExtra("amount",0.0)
         val offerCurrency = this.intent.getStringExtra("currency")
         val offerDescription = this.intent.getStringExtra("description")
         val offerImageUrl = this.intent.getStringExtra("url")
@@ -56,18 +56,11 @@ class DetailActivity : AppCompatActivity() {
             .into(detail_image)
     }
 
-    private fun toPolishFormat(price : String): String {
-        val symbols = DecimalFormatSymbols()
-        symbols.decimalSeparator = ','
-        val decimalFormat = DecimalFormat("0.00", symbols)
-        return decimalFormat.format(price.toDouble())
-    }
-
     private fun setupActionBar(){
         val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.toolbar, null)
-        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
-        supportActionBar!!.setDisplayShowCustomEnabled(true);
+        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setCustomView(view,
             ActionBar.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -76,8 +69,17 @@ class DetailActivity : AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.toolbar_image)
         backButton.visibility = View.VISIBLE
         backButton.setOnClickListener {
-            this.finish()
+            finish()
         }
 
+    }
+
+    companion object{
+         fun toPolishFormat(price : Double): String {
+            val symbols = DecimalFormatSymbols()
+            symbols.decimalSeparator = ','
+            val decimalFormat = DecimalFormat("0.00", symbols)
+            return decimalFormat.format(price)
+        }
     }
 }

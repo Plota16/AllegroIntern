@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.plocki.allegrointern.model.ApiResponse
 import com.plocki.allegrointern.model.Offer
 import com.plocki.allegrointern.recycler.ListAdapter
@@ -114,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = ListAdapter(restrictedData,context!!)
     }
 
-    private fun restrictData(offerList : List<Offer>) : ArrayList<Offer>{
+    fun restrictData(offerList : List<Offer>) : ArrayList<Offer>{
 
         val newData = ArrayList<Offer>()
         for(offer: Offer in offerList){
